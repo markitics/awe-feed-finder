@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {EmailContainer} from './EmailContainer'
+import {UserInfoContainer} from './UserInfoContainer'
 
 export const Content = (props) => {
     const res = props.response;
@@ -16,7 +16,7 @@ export const Content = (props) => {
                     <li key={i}>
                         <ul>
                             <li><a href={results[i].feedUrl} target="_blank">{results[i].feedUrl}</a></li>
-                            <li><EmailContainer feedUrl={results[i].feedUrl}/></li>
+                            <UserInfoContainer feedUrl={results[i].feedUrl}/>
                         </ul>
                     </li>
                 );

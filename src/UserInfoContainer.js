@@ -1,12 +1,14 @@
 import React from 'react';
 import request from 'request';
-import {Email} from './Email';
+import {UserInfo} from './UserInfo';
 
-export class EmailContainer extends React.Component{
+export class UserInfoContainer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             email: '',
+            name: '',
+            podcastName: '',
         }
     }
 
@@ -26,8 +28,12 @@ export class EmailContainer extends React.Component{
                 const xmlDoc = parser.parseFromString(body, 'application/xml');
                 console.log(xmlDoc);
                 const email = xmlDoc.getElementsByTagName('itunes:email')[0].childNodes[0].nodeValue;
+                const name = xmlDoc.getElementsByTagName('itunes:author')[0].childNodes[0].nodeValue;
+                const podcastName = xmlDoc.getElementsByTagName('title')[0].childNodes[0].nodeValue;
                 this.setState({
                     email: email,
+                    name: name,
+                    podcastName: podcastName,
                 });
             }
         });
@@ -35,7 +41,7 @@ export class EmailContainer extends React.Component{
 
     render(){
         return(
-            <Email email={this.state.email}/>
+            <UserInfo email={this.state.email} name={this.state.name} podcastName={this.state.podcastName}/>
         )
     }
 }
